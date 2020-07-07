@@ -1,40 +1,47 @@
 ﻿using ConsoleApp1.BusinessRule;
 using ConsoleApp1.Exception;
-using DotNetRuleEngine;
-using DotNetRuleEngine.Exceptions;
+using RuleEngineConsoleApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace ConsoleApp1
 {
-    public class PaymentRuleEngine : IPaymentRuleEngine
+    public class PaymentRuleEngine<T> : IPaymentRuleEngine<T>
     {
-        private readonly IBusinessRule businessRuleInstance;
-        public PaymentRuleEngine(IBusinessRule businessRule)
+        private readonly IBusinessRule<T> businessRuleInstance;
+        private BookBusiness<Book> bookBusiness;
+
+        public PaymentRuleEngine(IBusinessRule<T> businessRule)
         {
             businessRuleInstance = businessRule;
 
         }
-        public void ExecuteRule(IBusinessRule rule)
+
+        public PaymentRuleEngine(BookBusiness<Book> bookBusiness)
         {
-            businessRuleInstance.ExecuteRule();
+            this.bookBusiness = bookBusiness;
         }
 
-        public IBusinessRule GetRuleInstance(RuleType ruleType)
+        public IRuleExecutionResult ExecuteRule(T rule)
+        {
+            return businessRuleInstance.ExecuteRule(rule);
+        }
+
+        public IBusinessRule<T> GetRuleInstance(RuleType ruleType)
         {
             switch (ruleType)
             {
                 case RuleType.PaymentForBook:
-                    return new BookBusiness();
+                    return new BookBusiness<T>();
                 case RuleType.PaymentForMembership:
-                    return new MembershipBusiness();
+                    return new MembershipBusiness<T>();
                 case RuleType.PaymentForMembershipOrUpgrade:
-                    return new MembershipOrUpgradeBusiness();
+                    return new MembershipOrUpgradeBusiness<T>();
                 case RuleType.PaymentForPhysicalProduct:
-                    return new PhysicalProductBusiness();
+                    return new PhysicalProductBusiness<T>();
                 case RuleType.PaymentForVideoLearningToSki:
-                    return new VideoLearningToSkiBusiness();
+                    return new VideoLearningToSkiBusiness<T>();
                 default:
                     throw new Exception.UnsupportedRuleException("UnKnown Rule type.");
             }

@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ConsoleApp1.BusinessRule
 {
-    public class MembershipBusiness : IBusinessRule
+    public class MembershipBusiness<Membership> : IBusinessRule<Membership>
     {
-        public void ExecuteRule()
+        public IRuleExecutionResult ExecuteRule(Membership model)
         {
             throw new NotImplementedException();
         }

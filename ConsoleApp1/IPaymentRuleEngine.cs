@@ -5,9 +5,9 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    public interface IPaymentRuleEngine
+    public interface IPaymentRuleEngine<T>
     {
-        public void ExecuteRule(IBusinessRule rule);
-        public IBusinessRule GetRuleInstance(RuleType ruleType);
+        public IRuleExecutionResult ExecuteRule(T rule);
+        public IBusinessRule<T> GetRuleInstance(RuleType ruleType);
     }
 }

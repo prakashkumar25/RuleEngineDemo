@@ -4,9 +4,9 @@ using System.Text;
 
 namespace ConsoleApp1.BusinessRule
 {
-    public class PhysicalProductBusiness : IBusinessRule
+    public class PhysicalProductBusiness<PhysicalProduct>: IBusinessRule<PhysicalProduct>
     {
-        public void ExecuteRule()
+        public IRuleExecutionResult ExecuteRule(PhysicalProduct model)
         {
             throw new NotImplementedException();
         }

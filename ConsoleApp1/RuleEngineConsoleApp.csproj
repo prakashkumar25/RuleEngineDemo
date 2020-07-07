@@ -5,8 +5,4 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="DotNetRuleEngine" Version="4.0.7" />
-  </ItemGroup>
-
 </Project>

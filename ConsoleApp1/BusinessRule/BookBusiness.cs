@@ -4,9 +4,13 @@ using System.Text;
 
 namespace ConsoleApp1.BusinessRule
 {
-    public class BookBusiness : IBusinessRule
+    public class BookBusiness<T> : IBusinessRule<T>
     {
-        public void ExecuteRule()
+        public BookBusiness()
+        {
+                
+        }
+        public IRuleExecutionResult ExecuteRule(T ruleModel)
         {
             throw new NotImplementedException();
         }

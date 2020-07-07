@@ -4,8 +4,8 @@ using System.Text;
 
 namespace ConsoleApp1.BusinessRule
 {
-    public interface IBusinessRule
+    public interface IBusinessRule<T>
     {
-        public void ExecuteRule();
+        public IRuleExecutionResult ExecuteRule(T ruleModel);
     }
 }
